@@ -1,5 +1,7 @@
 ## vim: tw=120 shiftwidth=4 softtabstop=4 expandtab:
 
+# source("/home/brian/Documents/eggchase_2017/code/ADCP/oce/R/adp.sontek.R")
+
 #' Read a Sontek ADP File
 #'
 #' Read a Sontek acoustic-Doppler profiler file [1].
@@ -132,7 +134,8 @@ read.adp.sontek <- function(file, from=1, to, by=1, tz=getOption("oceTz"),
     }
     ##profileStart <- .Call("match2bytes", buf, parameters$profile.byte1, parameters$profile.byte2, FALSE)
     ##profileStart <- .Call("ldc_sontek_adp", buf, 0, 0, 0, 1, -1) # no ctd, no gps, no bottom-track; pcadp; all data
-    profileStart <- do_ldc_sontek_adp(buf, 0, 0, 0, 1, -1) # no ctd, no gps, no bottom-track; pcadp; all data
+    # profileStart <- do_ldc_sontek_adp(buf, 0, 0, 0, 1, -1) # no ctd, no gps, no bottom-track; pcadp; all data
+    profileStart <- do_ldc_sontek_adp(buf, 0, 0, 0, 0, -1) # no ctd, no gps, no bottom-track; no pcadp; all data
 
     profileStart2 <- sort(c(profileStart, profileStart+1)) # use this to subset for 2-byte reads
     oceDebug(debug, "first 10 profileStart:", profileStart[1:10], "\n")
